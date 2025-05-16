@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+
+# Jupyter
+*.ipynb
+
+# OS
+.DS_Store
+
+# Docker
+*.log
+*.csv
+*.db
+
+
+# VSCode / JetBrains
+.vscode/
+.idea/
+*.csv
+
+venv/
