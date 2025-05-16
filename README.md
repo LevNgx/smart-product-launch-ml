@@ -52,7 +52,7 @@ Returns:
   "input_data": {...}
 }
 
-POST /explain
+POST /idea-feedback
 
 Uses OpenAI to return a GPT-generated explanation for a given idea.
 
@@ -70,6 +70,20 @@ Returns plain English analysis like:
 This project runs as a Docker container and is deployed via GitHub Actions to a Free Tier AWS EC2 instance.
 
 ✅ Libraries installed during build step✅ .env handled securely using GitHub Secrets
+
+## 📸 Project Preview
+
+### predict success API request (swagger UI)
+![predict-success-request-swagger-ui](./screenshots/predict-success-request-screenshot.png)
+
+### predict success API response (swagger UI)
+![predict-success-response-swagger-ui](./screenshots/predict-success-response.png)
+
+### idea feedback API request (swagger UI)
+![idea-feedback-request-swagger-ui](./screenshots/idea-feedback-request.png)
+
+### idea feedback API request (swagger UI)
+![idea-feedback-response-swagger-ui](./screenshots/idea-feedback-response.png)
 
 📁 Folder Structure
 
