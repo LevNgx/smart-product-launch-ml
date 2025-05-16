@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
 import joblib
@@ -7,6 +7,7 @@ import numpy as np
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
@@ -20,6 +21,15 @@ feature_names = joblib.load('models/model_features.pkl')
 # fast api instance
 app = FastAPI(title="Product Success Predictor API")
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = ['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+ALLOWED_ORIGINS = ["http://65.2.57.138:8080/", "http://localhost:8080", "None"]
 # instantiating the open ai client
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -42,8 +52,13 @@ class ideaFeedbackSchema (BaseModel):
     ideaDescription:str
 
 @app.post('/idea-feedback')
-def idea_feedback(request_body:ideaFeedbackSchema):
+def idea_feedback(request_body:ideaFeedbackSchema, request:Request):
+
     try:
+        origin = request.get("origin")
+        print("origin", origin)
+        if origin is not None and origin not in ALLOWED_ORIGINS:
+            return JSONResponse(status_code=403, content={"error" : "this origin is not allowed to access this API"})
         # structing the prompt
         prompt = (
             f"You are a product strategist. Analyze the following startup idea and explain "
@@ -54,7 +69,7 @@ def idea_feedback(request_body:ideaFeedbackSchema):
 
         )
 
-        # calling the open ai api 
+        #calling the open ai api 
         gpt_response = client.chat.completions.create(
             model = "gpt-3.5-turbo",
             messages=[
