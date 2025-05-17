@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import os
 from openai import OpenAI
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 
 load_dotenv()
 
@@ -132,6 +133,5 @@ def success_predictor(request_body : ideaSchema):
         return JSONResponse(status_code=500, content={"error": str(e)})
 
 if __name__ == "__main__":
-    import uvicorn
     port = int(os.environ.get("PORT", 8080))  
     uvicorn.run("main:app", host="0.0.0.0", port=port)
