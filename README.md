@@ -4,15 +4,21 @@ This is a Machine Learning-powered API service built with FastAPI that predicts 
 
 It is connected to a full-stack dashboard and deployed on AWS EC2 via Docker + GitHub Actions.
 
+🔗 Live Project
+
+🚀 Server listens on
+
+[https://smart-product-launch-ml-469045769318.europe-west3.run.app/docs](https://smart-product-launch-ml-469045769318.europe-west3.run.app/docs) 
+
 🚀 Features
 
 📊 Predict product success using a trained Random Forest model
 
 📬 /predict-success endpoint receives idea input and returns the success %
 
-🧠 /explain endpoint uses GPT to give human-readable strategic feedback (via OpenAI)
+🧠 /idea-feedback endpoint uses GPT to give human-readable strategic feedback (via OpenAI)
 
-🛠️ Deployed via Docker, GitHub Actions, and EC2
+🛠️ Deployed via Docker and Google Cloud Run
 
 🔎 Swagger UI documentation available at /docs
 
@@ -67,7 +73,7 @@ Returns plain English analysis like:
 
 🐻 Dockerized & Ready for CI/CD
 
-This project runs as a Docker container and is deployed via GitHub Actions to a Free Tier AWS EC2 instance.
+This project is containerized using a Dockerfile and deployed directly to Google Cloud Run using the Cloud Console UI.
 
 ✅ Libraries installed during build step✅ .env handled securely using GitHub Secrets
 
